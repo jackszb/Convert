@@ -1,9 +1,0 @@
-DOMAIN,test1.com
-DOMAIN,test2.com
-DOMAIN-SUFFIX,test4.com
-DOMAIN-SUFFIX,test5.com
-DOMAIN-KEYWORD,test7
-DOMAIN-KEYWORD,test8
-IP-CIDR,0.0.0.0/8,no-resolve
-IP-CIDR,fc00::/7,no-resolve
-IP-CIDR,fe80::/10,no-resolve
