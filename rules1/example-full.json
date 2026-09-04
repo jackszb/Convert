@@ -4,22 +4,18 @@
     {
       "domain": [
         "test1.com",
-        "test2.com",
-        "test3.com"
+        "test2.com"
       ],
       "domain_suffix": [
         "test4.com",
-        "test5.com",
-        "test6.com"
+        "test5.com"
       ],
       "domain_keyword": [
         "test7",
-        "test8",
-        "test9"
+        "test8"
       ],
       "ip_cidr": [
         "0.0.0.0/8",
-        "10.0.0.0/8",
         "fc00::/7",
         "fe80::/10"
       ]
