@@ -1,0 +1,49 @@
+name: Convert sing-box rules to Shadowrocket RULE-SET
+
+# 触发条件：
+# 1. 当 rules1 目录下的 json 文件发生变化并 push 到默认分支时自动触发
+# 2. 也支持手动在 Actions 页面点击 "Run workflow" 触发（方便调试/首次全量转换）
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "rules1/**.json"
+  workflow_dispatch: {}
+
+# 避免多次并发推送互相冲突
+concurrency:
+  group: convert-rules
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: 配置 Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: 执行转换脚本
+        run: python3 scripts/convert.py rules1 rules2
+
+      - name: 提交并推送 rules2 变更
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add rules2
+          if git diff --cached --quiet; then
+            echo "没有需要提交的变更"
+          else
+            git commit -m "chore: 自动转换 sing-box 规则为 Shadowrocket RULE-SET [skip ci]"
+            git push
+          fi
