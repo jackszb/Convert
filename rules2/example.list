@@ -1,0 +1,9 @@
+DOMAIN,test1.com
+DOMAIN,test2.com
+DOMAIN,test3.com
+DOMAIN-SUFFIX,test4.com
+DOMAIN-SUFFIX,test5.com
+DOMAIN-SUFFIX,test6.com
+IP-CIDR,0.0.0.0/8,no-resolve
+IP-CIDR,10.0.0.0/8,no-resolve
+IP-CIDR,fc00::/7,no-resolve
